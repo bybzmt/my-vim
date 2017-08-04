@@ -142,7 +142,7 @@ Plugin 'SirVer/ultisnips'
 " 代码自动补全
 " 迄今为止用到的最好的自动VIM自动补全插件
 " 重启 :YcmRestartServer
-Plugin 'Valloric/YouCompleteMe'
+"Plugin 'Valloric/YouCompleteMe'
 " 自动补全单引号，双引号等
 "Plugin 'Raimondi/delimitMate'
 " 自动补全html/xml标签
