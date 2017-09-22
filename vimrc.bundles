@@ -113,7 +113,7 @@ let g:used_javascript_libs = 'jquery,underscore,backbone'
 " for javascript 自动补全, 配合YCM, 需要安装全局环境的（非nvm中) node.js&npm
 " 安装完成后还需要在 bundle/tern_for_vim 下执行 npm install 安装依赖
 " see https://github.com/marijnh/tern_for_vim
-Plugin 'marijnh/tern_for_vim'
+"Plugin 'marijnh/tern_for_vim'
 
 " coffee语言支持
 Plugin 'kchmck/vim-coffee-script'
@@ -136,7 +136,7 @@ Plugin 'scrooloose/syntastic'
 " 代码片段快速插入 (snippets中,是代码片段资源,需要学习)
 " Snippets are separated from the engine. Add this if you want them:
 Plugin 'SirVer/ultisnips'
-"Plugin 'honza/vim-snippets'
+Plugin 'honza/vim-snippets'
 
 " auto complete
 " 代码自动补全
@@ -161,8 +161,8 @@ Plugin 'kana/vim-textobj-entire'
 " 增加缩进文本对象: i   dai yai cii - 相同缩进属于同一块
 Plugin 'kana/vim-textobj-indent'
 
-" 增加html编写速度
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" 增加html编写速度 （与自动补全冲突!）
+"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
 
 " ######### 结速 ###################################
