@@ -102,13 +102,14 @@ Plugin 'spf13/PIV'
 
 " javascript
 " 注意: syntax这个插件要放前面
+Plugin 'jelera/vim-javascript-syntax'
 Plugin 'othree/yajs.vim'
 Plugin 'pangloss/vim-javascript'
-Plugin 'jelera/vim-javascript-syntax'
 
 " TODO: jquery? for, remove or keep
-Plugin 'othree/javascript-libraries-syntax.vim'
-let g:used_javascript_libs = 'jquery,underscore,backbone'
+" 此插件iskeyword有bug！
+"Plugin 'othree/javascript-libraries-syntax.vim'
+"let g:used_javascript_libs = 'jquery,underscore,backbone'
 
 " for javascript 自动补全, 配合YCM, 需要安装全局环境的（非nvm中) node.js&npm
 " 安装完成后还需要在 bundle/tern_for_vim 下执行 npm install 安装依赖
@@ -143,6 +144,7 @@ Plugin 'honza/vim-snippets'
 " 迄今为止用到的最好的自动VIM自动补全插件
 " 重启 :YcmRestartServer
 "Plugin 'Valloric/YouCompleteMe'
+
 " 自动补全单引号，双引号等
 "Plugin 'Raimondi/delimitMate'
 " 自动补全html/xml标签
@@ -160,10 +162,6 @@ Plugin 'kana/vim-textobj-line'
 Plugin 'kana/vim-textobj-entire'
 " 增加缩进文本对象: i   dai yai cii - 相同缩进属于同一块
 Plugin 'kana/vim-textobj-indent'
-
-" 增加html编写速度 （与自动补全冲突!）
-"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-
 
 " ######### 结速 ###################################
 " ###################################################

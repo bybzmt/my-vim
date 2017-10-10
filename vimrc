@@ -359,6 +359,12 @@ if findfile("tags", ".;") != ""
 endif
 "set autochdir
 
+au FileType php call PHPFuncList()
+function PHPFuncList()
+    set dictionary-=~/.vim/dic/php.dic dictionary+=~/.vim/dic/php.dic
+    set complete-=k complete+=k
+endfunction
+
 "键捷键超时时间
 set timeoutlen=1500
 
