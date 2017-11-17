@@ -317,10 +317,11 @@ vnoremap > >gv
 " Set extra options when running in GUI mode
 if has("gui_running")
     if has("gui_gtk")
-        "set guifont=YaHei\ Consolas\ Hybrid\ 12
-        set guifont=YaHei\ Consolas\ Hybrid
+        "set guifont=YaHei\ Consolas\ Hybrid\ 11
+        set guifont=Monaco\ 11
     else
-        set guifont=YaHei_Consolas_Hybrid:h12
+        "set guifont=YaHei_Consolas_Hybrid:h11
+        set guifont=Monaco:h11
     endif
 
     set guioptions-=T
