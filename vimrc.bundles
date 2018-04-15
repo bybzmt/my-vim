@@ -122,9 +122,6 @@ Plugin 'kchmck/vim-coffee-script'
 " json
 Plugin 'elzr/vim-json', {'for': 'json'}
 
-" nginx支持
-Plugin 'evanmiller/nginx-vim-syntax'
-
 " vue.js支持
 Plugin 'posva/vim-vue'
 
