@@ -364,8 +364,24 @@ endif
 
 au FileType php call PHPFuncList()
 function PHPFuncList()
+    " tab相关变更
+    " 设置Tab键的宽度        [等同的空格个数]
+    set tabstop=4
+    " 每一次缩进对应的空格数
+    set shiftwidth=4
+    " 按退格键时可以一次删掉 4 个空格
+    set softtabstop=4
+
     set dictionary-=~/.vim/dic/php.dic dictionary+=~/.vim/dic/php.dic
     set complete-=k complete+=k
+endfunction
+
+au FileType javascript call JavascriptFuncList()
+function JavascriptFuncList()
+    set tabstop=2
+    set shiftwidth=2
+    set softtabstop=2
+    set expandtab
 endfunction
 
 "键捷键超时时间
