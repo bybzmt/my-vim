@@ -6,64 +6,64 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
+"set rtp+=~/.vim/bundle/Vundle.vim
 
-call vundle#begin()
+call plug#begin('~/.vim/plugged')
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+"Plug 'VundleVim/Vundle.vim'
 
 " ###################################################
 " ######### 开始 ###################################
 
 " 中文帮助
-Plugin 'asins/vimcdoc'
+Plug 'asins/vimcdoc'
 
 " git管理
-Plugin 'tpope/vim-fugitive'
-Plugin 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 
 " plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
+" Plug 'L9'
 " Git plugin not hosted on GitHub
-"Plugin 'git://git.wincent.com/command-t.git'
+"Plug 'git://git.wincent.com/command-t.git'
 
 " 状态栏增强展示
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 " 括号显示增强
-Plugin 'kien/rainbow_parentheses.vim'
+Plug 'kien/rainbow_parentheses.vim'
 " 主题 solarized
-Plugin 'altercation/vim-colors-solarized'
+Plug 'altercation/vim-colors-solarized'
 " 主题 molokai
-Plugin 'tomasr/molokai'
+Plug 'tomasr/molokai'
 
 " 目录树功能
-Plugin 'scrooloose/nerdtree'
-Plugin 'jistr/vim-nerdtree-tabs'
+Plug 'scrooloose/nerdtree'
+Plug 'jistr/vim-nerdtree-tabs'
 " tabs/buffer/files 空间管理？
-Plugin 'szw/vim-ctrlspace'
+Plug 'szw/vim-ctrlspace'
 
 " ########### 编辑功能增加 ########
 
 " quick edit
 " 快速注释
-Plugin 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdcommenter'
 
 " 快速加入修改环绕字符
 " for repeat -> enhance surround.vim, . to repeat command
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
 
 " trailingwhitespace
 " 快速去行尾空格 [, + <Space>]
-Plugin 'bronson/vim-trailing-whitespace'
+Plug 'bronson/vim-trailing-whitespace'
 
 " easyalign
 " 快速赋值语句对齐
-Plugin 'junegunn/vim-easy-align'
+Plug 'junegunn/vim-easy-align'
 
 " signature
 " 显示marks - 方便自己进行标记和跳转
@@ -71,100 +71,104 @@ Plugin 'junegunn/vim-easy-align'
 " '[a-zA-Z] go to mark
 " m<Space>  del all marks
 " m/        list all marks
-Plugin 'kshenoy/vim-signature'
+Plug 'kshenoy/vim-signature'
 
 " edit history, 可以查看回到某个历史状态
-Plugin 'mbbill/undotree'
+Plug 'mbbill/undotree'
 
 
 " ########### 语言支持 ###################
 
 " rust语言支持
-Plugin 'wting/rust.vim'
+Plug 'wting/rust.vim'
 
 " markdown支持
-Plugin 'plasticboy/vim-markdown', {'for': 'md'}
+Plug 'plasticboy/vim-markdown', {'for': 'md'}
 
 " 1. vim a.go
 " 2. :GoInstallBinaries
 " vimgo
-Plugin 'fatih/vim-go', {'for': 'go'}
+Plug 'fatih/vim-go', {'for': 'go'}
 
 
 " for python.vim syntax highlight
 " pythonsyntax
-Plugin 'hdima/python-syntax'
-Plugin 'hynek/vim-python-pep8-indent'
-Plugin 'Glench/Vim-Jinja2-Syntax'
+Plug 'hdima/python-syntax'
+Plug 'hynek/vim-python-pep8-indent'
+Plug 'Glench/Vim-Jinja2-Syntax'
 
 " php支持
-Plugin 'spf13/PIV'
+Plug 'spf13/PIV'
 
 " javascript
 " 注意: syntax这个插件要放前面
-Plugin 'jelera/vim-javascript-syntax'
-Plugin 'othree/yajs.vim'
-Plugin 'pangloss/vim-javascript'
-
-" TODO: jquery? for, remove or keep
-" 此插件iskeyword有bug！
-"Plugin 'othree/javascript-libraries-syntax.vim'
-"let g:used_javascript_libs = 'jquery,underscore,backbone'
+Plug 'jelera/vim-javascript-syntax'
+Plug 'othree/yajs.vim'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
 
 " for javascript 自动补全, 配合YCM, 需要安装全局环境的（非nvm中) node.js&npm
 " 安装完成后还需要在 bundle/tern_for_vim 下执行 npm install 安装依赖
 " see https://github.com/marijnh/tern_for_vim
-"Plugin 'marijnh/tern_for_vim'
+"Plug 'marijnh/tern_for_vim'
 
 " coffee语言支持
-Plugin 'kchmck/vim-coffee-script'
+"Plug 'kchmck/vim-coffee-script'
 
 " json
-Plugin 'elzr/vim-json', {'for': 'json'}
+Plug 'elzr/vim-json', {'for': 'json'}
 
 " vue.js支持
-Plugin 'posva/vim-vue'
+Plug 'posva/vim-vue'
 
 " ######### 编程功能增强 ########
 
 " 语法检查
-Plugin 'scrooloose/syntastic'
+Plug 'scrooloose/syntastic'
 
 " Group dependencies, vim-snippets depends on ultisnips
 " 代码片段快速插入 (snippets中,是代码片段资源,需要学习)
 " Snippets are separated from the engine. Add this if you want them:
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 " auto complete
 " 代码自动补全
 " 迄今为止用到的最好的自动VIM自动补全插件
 " 重启 :YcmRestartServer
-"Plugin 'Valloric/YouCompleteMe'
+"Plug 'Valloric/YouCompleteMe'
+
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'skywind3000/gutentags_plus'
+Plug 'skywind3000/vim-preview'
 
 " 自动补全单引号，双引号等
-"Plugin 'Raimondi/delimitMate'
+"Plug 'Raimondi/delimitMate'
 " 自动补全html/xml标签
-Plugin 'docunext/closetag.vim'
+Plug 'docunext/closetag.vim'
 
 " 函数列表
-Plugin 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar'
 
 " text object
 " 支持自定义文本对象
-Plugin 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-user'
 " 增加行文本对象: l   dal yal cil
-Plugin 'kana/vim-textobj-line'
+Plug 'kana/vim-textobj-line'
 " 增加文件文本对象: e   dae yae cie
-Plugin 'kana/vim-textobj-entire'
+Plug 'kana/vim-textobj-entire'
 " 增加缩进文本对象: i   dai yai cii - 相同缩进属于同一块
-Plugin 'kana/vim-textobj-indent'
+Plug 'kana/vim-textobj-indent'
+
+"GraphQL
+Plug 'jparise/vim-graphql'
 
 " ######### 结速 ###################################
 " ###################################################
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
+" All of your Plugs must be added before the following line
+call plug#end()
+
 filetype plugin indent on    " required
 
 " ################### 基础 ######################
@@ -193,7 +197,7 @@ filetype plugin indent on    " required
     " let g:syntastic_python_pylint_args='--disable=C0111,R0903,C0301'
 
     " if js
-    " let g:syntastic_javascript_checkers = ['jsl', 'jshint']
+    let g:syntastic_javascript_checkers = ['eslint']
     " let g:syntastic_html_checkers=['tidy', 'jshint']
 
     " to see error location list
@@ -554,6 +558,7 @@ filetype plugin indent on    " required
     let g:html_indent_inctags = "html,body,head,tbody"
     let g:html_indent_script1 = "inc"
     let g:html_indent_style1 = "inc"
+    let g:jsx_ext_required = 1
 " }}}
 
 " json {{{

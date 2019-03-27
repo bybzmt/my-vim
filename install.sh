@@ -11,6 +11,10 @@ fi
 if [ "$(whereis -b ctags|awk '{print $2}')" == "" ]; then
     sudo apt install exuberant-ctags
 fi
+# 安装gtags
+if [ "$(whereis -b gtags|awk '{print $2}')" == "" ]; then
+    sudo aptitude install global
+fi
 # 安装golang
 if [ "$(whereis -b go|awk '{print $2}')" == "" ]; then
     sudo apt install golang
@@ -37,8 +41,4 @@ fi
 ln -vs "$ph" ~/.vim
 ln -vs ~/.vim/vimrc ~/.vimrc
 
-if [ ! -d $ph/bundle/Vundle.vim ]; then
-    git clone https://github.com/VundleVim/Vundle.vim.git $ph/bundle/Vundle.vim
-fi
-
-vim +PluginInstall +qall
+vim +PlugInstall +qall

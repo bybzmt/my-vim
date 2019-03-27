@@ -75,7 +75,7 @@ set laststatus=2
 " 显示行号
 set number
 " 取消换行
-set nowrap
+"set nowrap
 
 " 括号配对情况, 跳转并高亮一下匹配的括号
 set showmatch
@@ -154,7 +154,8 @@ set nrformats=
 " 设置新文件的编码为 UTF-8
 set encoding=utf-8
 " 自动判断编码时，依次尝试以下编码：
-set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
+"set fileencodings=ucs-bom,utf-8,big5,cp936,gb18030,cp932,euc-jp,euc-kr,latin1
+set fileencodings=ucs-bom,utf-8,gb18030,shift-jis,euc-jp,euc-kr,latin1
 set helplang=cn
 "set langmenu=zh_CN.UTF-8
 "set enc=2byte-gb18030
@@ -238,12 +239,12 @@ endfunc
 nnoremap <F2> :call HideNumber()<CR>
 
 " 相对行号: 行号变成相对，可以用 nj/nk 进行跳转
-set relativenumber number
-au FocusLost * :set norelativenumber number
-au FocusGained * :set relativenumber
+"set relativenumber number
+"au FocusLost * :set norelativenumber number
+"au FocusGained * :set relativenumber
 " 插入模式下用绝对行号, 普通模式下用相对
-autocmd InsertEnter * :set norelativenumber number
-autocmd InsertLeave * :set relativenumber
+"autocmd InsertEnter * :set norelativenumber number
+"autocmd InsertLeave * :set relativenumber
 function! NumberToggle()
   if(&relativenumber == 1)
     set norelativenumber number
@@ -324,10 +325,12 @@ if has("gui_running")
         set guifont=Monaco:h11
     endif
 
-    set guioptions-=T
-    set guioptions+=e
-    set guioptions-=r
-    set guioptions-=L
+    "set guioptions-=T
+    "set guioptions+=e
+    "set guioptions-=r
+    "set guioptions-=L
+    set guioptions=a
+
     set guitablabel=%M\ %t
     set showtabline=1
     set linespace=2
@@ -342,13 +345,14 @@ endif
 
 
 "theme主题
-set background=dark
+"set background=dark
 "set t_Co=256
 
 "colorscheme evening
-colorscheme solarized
-" colorscheme molokai
-" colorscheme desert
+"colorscheme solarized
+"colorscheme molokai
+"colorscheme desert
+colorscheme morning
 
 
 " 设置标记一列的背景颜色和数字一行颜色一致
@@ -357,9 +361,9 @@ hi! link ShowMarksHLl DiffAdd
 hi! link ShowMarksHLu DiffChange
 
 "自动设置tag
-if findfile("tags", ".;") != ""
-	exec('set tag='. findfile("tags", ".;"))
-endif
+" if findfile("tags", ".;") != ""
+	" exec('set tag='. findfile("tags", ".;"))
+" endif
 "set autochdir
 
 au FileType php call PHPFuncList()
@@ -388,3 +392,26 @@ endfunction
 set timeoutlen=1500
 
 
+" enable gtags module
+let g:gutentags_modules = ['ctags', 'gtags_cscope']
+
+" gutentags搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归 "
+let g:gutentags_project_root = ['.root', '.svn', '.git', '.project']
+
+" 所生成的数据文件的名称 "
+let g:gutentags_ctags_tagfile = '.tags'
+
+" 将自动生成的 tags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录 "
+let s:vim_tags = expand('~/.cache/tags')
+let g:gutentags_cache_dir = s:vim_tags
+" 检测 ~/.cache/tags 不存在就新建 "
+if !isdirectory(s:vim_tags)
+   silent! call mkdir(s:vim_tags, 'p')
+endif
+
+" 配置 ctags 的参数 "
+let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
+let g:gutentags_ctags_extra_args += ['--c++-kinds=+pxI']
+let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+
+let g:gutentags_define_advanced_commands = 1
