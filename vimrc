@@ -1,16 +1,19 @@
+" install bundles
+if filereadable(expand("~/.vim/vimrc.bundles"))
+  source ~/.vim/vimrc.bundles
+endif
 
+set nocompatible
+filetype plugin indent on
+" 开启语法高亮
+syntax on
 
 " 修改leader键
 let mapleader = ','
 let g:mapleader = ','
 
-" 开启语法高亮
-syntax on
-
-" install bundles
-if filereadable(expand("~/.vim/vimrc.bundles"))
-  source ~/.vim/vimrc.bundles
-endif
+"leader键捷键超时时间
+set timeoutlen=1500
 
 " history存储容量
 set history=2000
@@ -30,7 +33,7 @@ set t_ti= t_te=
 " 鼠标暂不启用, 键盘党....
 "set mouse-=a
 " 启用鼠标
-set mouse=a
+"set mouse=a
 " Hide the mouse cursor while typing
 "set mousehide
 " change the terminal's title
@@ -223,36 +226,19 @@ endif
 " F1 废弃这个键,防止调出系统帮助
 noremap <F1> <Esc>"
 
-" F2 行号开关，用于鼠标复制代码用
-" 为方便复制，用<F2>开启/关闭行号显示:
+" F2 切换:行号开/行号关/相对行号
 function! HideNumber()
- if(&relativenumber == &number)
-   set relativenumber! number!
- elseif(&number)
-   set number!
- else
-   set relativenumber!
- endif
-    " set number!
-  " set number?
+    if (&number == 0)
+        set number
+        set norelativenumber
+    elseif (&relativenumber == 1)
+        set nonumber
+        set norelativenumber
+    else
+        set relativenumber number
+    endif
 endfunc
 nnoremap <F2> :call HideNumber()<CR>
-
-" 相对行号: 行号变成相对，可以用 nj/nk 进行跳转
-"set relativenumber number
-"au FocusLost * :set norelativenumber number
-"au FocusGained * :set relativenumber
-" 插入模式下用绝对行号, 普通模式下用相对
-"autocmd InsertEnter * :set norelativenumber number
-"autocmd InsertLeave * :set relativenumber
-function! NumberToggle()
-  if(&relativenumber == 1)
-    set norelativenumber number
-  else
-    set relativenumber
-  endif
-endfunc
-nnoremap <C-n> :call NumberToggle()<cr>
 
 " F3 显示可打印字符开关
 nnoremap <F3> :set list! list?<CR>
@@ -274,38 +260,39 @@ noremap H ^
 noremap L $
 
 " tab切换
-map <leader>th :tabfirst<cr>
-map <leader>tl :tablast<cr>
+" map <leader>th :tabfirst<cr>
+" map <leader>tl :tablast<cr>
 
-map <leader>tj :tabnext<cr>
-map <leader>tk :tabprev<cr>
-map <leader>tn :tabnext<cr>
-map <leader>tp :tabprev<cr>
+" map <leader>tj :tabnext<cr>
+" map <leader>tk :tabprev<cr>
+" map <leader>tn :tabnext<cr>
+" map <leader>tp :tabprev<cr>
 
-map <leader>te :tabedit<cr>
-map <leader>td :tabclose<cr>
-map <leader>tm :tabm<cr>
+" map <leader>te :tabedit<cr>
+" map <leader>td :tabclose<cr>
+" map <leader>tm :tabm<cr>
 
 " normal模式下切换到确切的tab
-noremap <leader>1 1gt
-noremap <leader>2 2gt
-noremap <leader>3 3gt
-noremap <leader>4 4gt
-noremap <leader>5 5gt
-noremap <leader>6 6gt
-noremap <leader>7 7gt
-noremap <leader>8 8gt
-noremap <leader>9 9gt
-noremap <leader>0 :tablast<cr>
+" noremap <leader>1 1gt
+" noremap <leader>2 2gt
+" noremap <leader>3 3gt
+" noremap <leader>4 4gt
+" noremap <leader>5 5gt
+" noremap <leader>6 6gt
+" noremap <leader>7 7gt
+" noremap <leader>8 8gt
+" noremap <leader>9 9gt
+" noremap <leader>0 :tablast<cr>
 
 " 新建tab  Ctrl+t
-nnoremap <C-t>     :tabnew<CR>
+" nnoremap <C-t>     :tabnew<CR>
 "nnoremap <C-w>     :tabclose<CR>
-inoremap <C-t>     <Esc>:tabnew<CR>
+" inoremap <C-t>     <Esc>:tabnew<CR>
 
-noremap <C-[> :pop<CR>
+" noremap <C-[> :pop<CR>
+
 "在新标签打开tag
-noremap <C-p> <c-w><c-]><c-w>T
+" noremap <C-p> <c-w><c-]><c-w>T
 
 " 调整缩进后自动选中，方便再次操作
 vnoremap < <gv
@@ -360,12 +347,6 @@ hi! link SignColumn   LineNr
 hi! link ShowMarksHLl DiffAdd
 hi! link ShowMarksHLu DiffChange
 
-"自动设置tag
-" if findfile("tags", ".;") != ""
-	" exec('set tag='. findfile("tags", ".;"))
-" endif
-"set autochdir
-
 au FileType php call PHPFuncList()
 function PHPFuncList()
     " tab相关变更
@@ -388,30 +369,3 @@ function JavascriptFuncList()
     set expandtab
 endfunction
 
-"键捷键超时时间
-set timeoutlen=1500
-
-
-" enable gtags module
-let g:gutentags_modules = ['ctags', 'gtags_cscope']
-
-" gutentags搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归 "
-let g:gutentags_project_root = ['.root', '.svn', '.git', '.project']
-
-" 所生成的数据文件的名称 "
-let g:gutentags_ctags_tagfile = '.tags'
-
-" 将自动生成的 tags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录 "
-let s:vim_tags = expand('~/.cache/tags')
-let g:gutentags_cache_dir = s:vim_tags
-" 检测 ~/.cache/tags 不存在就新建 "
-if !isdirectory(s:vim_tags)
-   silent! call mkdir(s:vim_tags, 'p')
-endif
-
-" 配置 ctags 的参数 "
-let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
-let g:gutentags_ctags_extra_args += ['--c++-kinds=+pxI']
-let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
-
-let g:gutentags_define_advanced_commands = 1
