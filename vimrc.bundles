@@ -4,6 +4,9 @@
 
 call plug#begin('~/.vim/plugged')
 
+" 文件编码识别
+Plug 'mbbill/fencview'
+
 " 中文帮助
 Plug 'asins/vimcdoc'
 
@@ -163,6 +166,13 @@ call plug#end()
     let g:syntastic_check_on_open=1
     let g:syntastic_check_on_wq=0
     let g:syntastic_enable_highlighting=1
+
+    "需要在项目根目录下写个配置文件.syntastic_c_config
+    "每个文件夹占一行
+    "-I yourlib/
+    "-I yourlib/subdir
+    let g:syntastic_c_config_file = '.syntastic_c_config'
+    let g:syntastic_cpp_config_file = '.syntastic_c_config'
 
     " checkers
     " 最轻量
@@ -559,7 +569,7 @@ call plug#end()
     endif
 
     " gutentags搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归 "
-    let g:gutentags_project_root = ['.root', '.project', '.git', ".hg", '.svn']
+    let g:gutentags_project_root = ['.root', '.project', '.git', ".hg", '.svn', '.syntastic_c_config']
 
     " 所生成的数据文件的名称 "
     let g:gutentags_ctags_tagfile = '.tags'

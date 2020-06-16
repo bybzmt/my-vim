@@ -1,7 +1,8 @@
 " install bundles
 if filereadable(expand("~/.vim/vimrc.bundles"))
-  source ~/.vim/vimrc.bundles
+    source ~/.vim/vimrc.bundles
 endif
+
 
 set nocompatible
 filetype plugin indent on
@@ -33,7 +34,7 @@ set t_ti= t_te=
 " 鼠标暂不启用, 键盘党....
 "set mouse-=a
 " 启用鼠标
-"set mouse=a
+set mouse=a
 " Hide the mouse cursor while typing
 "set mousehide
 " change the terminal's title
@@ -158,7 +159,7 @@ set nrformats=
 set encoding=utf-8
 " 自动判断编码时，依次尝试以下编码：
 "set fileencodings=ucs-bom,utf-8,big5,cp936,gb18030,cp932,euc-jp,euc-kr,latin1
-set fileencodings=ucs-bom,utf-8,gb18030,shift-jis,euc-jp,euc-kr,latin1
+set fileencodings=ucs-bom,utf-8,shift-jis,gb18030,euc-jp,euc-kr,latin1
 set helplang=cn
 "set langmenu=zh_CN.UTF-8
 "set enc=2byte-gb18030
@@ -289,10 +290,10 @@ noremap L $
 "nnoremap <C-w>     :tabclose<CR>
 " inoremap <C-t>     <Esc>:tabnew<CR>
 
-" noremap <C-[> :pop<CR>
+noremap <C-[> :pop<CR>
 
 "在新标签打开tag
-" noremap <C-p> <c-w><c-]><c-w>T
+noremap <C-p> <c-w><c-]><c-w>T
 
 " 调整缩进后自动选中，方便再次操作
 vnoremap < <gv
@@ -305,17 +306,17 @@ vnoremap > >gv
 " Set extra options when running in GUI mode
 if has("gui_running")
     if has("gui_gtk")
-        "set guifont=YaHei\ Consolas\ Hybrid\ 11
+        " set guifont=YaHei\ Consolas\ Hybrid\ 11
         set guifont=Monaco\ 11
     else
-        "set guifont=YaHei_Consolas_Hybrid:h11
+        " set guifont=YaHei_Consolas_Hybrid:h11
         set guifont=Monaco:h11
     endif
 
-    "set guioptions-=T
-    "set guioptions+=e
-    "set guioptions-=r
-    "set guioptions-=L
+    set guioptions-=T
+    set guioptions+=e
+    set guioptions-=r
+    set guioptions-=L
     set guioptions=a
 
     set guitablabel=%M\ %t
