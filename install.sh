@@ -29,16 +29,6 @@ elif [ -d ~/.vim ]; then
     mv -v ~/.vim ~/vim.bak
 fi
 
-# 判断.vimrc是否存在
-if [ -L ~/.vimrc ]; then
-    echo "~/.vimrc is a symbolic link"
-    rm -v ~/.vimrc
-elif [ -f ~/.vimrc ]; then
-    echo "~/.vimrc is a file"
-    mv -v ~/.vimrc ~/vimrc.bak
-fi
-
 ln -vs "$ph" ~/.vim
-ln -vs ~/.vim/vimrc ~/.vimrc
 
 vim +PlugInstall +qall
