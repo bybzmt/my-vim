@@ -14,7 +14,7 @@ let mapleader = ','
 let g:mapleader = ','
 
 "leader键捷键超时时间
-set timeoutlen=1500
+set timeoutlen=2000
 
 " history存储容量
 set history=2000
